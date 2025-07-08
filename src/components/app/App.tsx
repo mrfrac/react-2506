@@ -1,11 +1,11 @@
 import { restaurants } from '../../constants/mock.ts';
 import { Layout } from '../layout/Layout.tsx';
-import { RestaurantsList } from '../restaurants-list/RestaurantsList.tsx';
+import { RestaurantsPage } from '../restaurants-page/RestaurantsPage.tsx';
 
 export const App = () => {
   return (
     <Layout>
-      <RestaurantsList restaurants={restaurants} />
+      <RestaurantsPage restaurants={restaurants} />
     </Layout>
   );
 };

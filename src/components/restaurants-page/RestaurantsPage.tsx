@@ -2,11 +2,11 @@ import { type FunctionComponent, useState } from 'react';
 import type { Restaurant } from '../../types';
 import { RestaurantCard } from '../restaurant-card/RestaurantCard.tsx';
 
-type RestaurantsListProps = {
+type RestaurantsPageProps = {
   restaurants: Restaurant[];
 };
 
-export const RestaurantsList: FunctionComponent<RestaurantsListProps> = ({
+export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
   restaurants,
 }) => {
   const [selectedId, setSelectedId] = useState<string>(restaurants[0].id);
