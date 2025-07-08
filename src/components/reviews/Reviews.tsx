@@ -1,4 +1,5 @@
 import type { FunctionComponent } from 'react';
+import type { Review } from '../../types';
 import { Rating } from './Rating.tsx';
 
 type ReviewsProps = {

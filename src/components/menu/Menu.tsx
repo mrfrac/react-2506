@@ -1,7 +1,8 @@
 import type { FunctionComponent } from 'react';
+import type { Menu as MenuType } from '../../types';
 
 type MenuProps = {
-  menu: Menu[];
+  menu: MenuType[];
 };
 
 export const Menu: FunctionComponent<MenuProps> = ({ menu }) => {
