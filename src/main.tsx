@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
-import { restaurants } from './mock';
+import { restaurants } from './constants/mock.ts';
 
 createRoot(document.getElementById('root')!).render(
   createElement(
