@@ -5,11 +5,11 @@ export const Counter = () => {
 
   return (
     <>
-      <button type="button" onClick={() => decrement()}>
+      <button type="button" onClick={decrement}>
         -
       </button>
       {value}
-      <button type="button" onClick={() => increment()}>
+      <button type="button" onClick={increment}>
         +
       </button>
     </>
