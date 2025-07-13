@@ -4,7 +4,8 @@ import { ReviewRating } from '../review-rating/ReviewRating.tsx';
 type FormActionArguments =
   | { type: 'setNameAction'; payload: string }
   | { type: 'setTextAction'; payload: string }
-  | { type: 'setRatingValue'; payload: number };
+  | { type: 'setRatingValueAction'; payload: number }
+  | { type: 'clearReviewAction'; payload: undefined };
 
 type FormState = {
   name: string;
@@ -32,10 +33,16 @@ function formReducer(state: FormState, { type, payload }: FormActionArguments) {
         text: payload,
       };
     }
-    case 'setRatingValue': {
+    case 'setRatingValueAction': {
       return {
         ...state,
         rating: payload,
+      };
+    }
+    case 'clearReviewAction': {
+      return {
+        ...initialFormState,
+        rating: 0,
       };
     }
     default:
@@ -77,9 +84,18 @@ export const ReviewForm = () => {
       Рейтинг:{' '}
       <ReviewRating
         onRatingChange={(payload) =>
-          dispatch({ type: 'setRatingValue', payload })
+          dispatch({ type: 'setRatingValueAction', payload })
         }
       ></ReviewRating>
+      <br />
+      <button
+        type="button"
+        onClick={() =>
+          dispatch({ type: 'clearReviewAction', payload: undefined })
+        }
+      >
+        Clear
+      </button>
     </form>
   );
 };
