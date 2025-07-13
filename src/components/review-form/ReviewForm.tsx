@@ -1,0 +1,85 @@
+import { useReducer } from 'react';
+import { ReviewRating } from '../review-rating/ReviewRating.tsx';
+
+type FormActionArguments =
+  | { type: 'setNameAction'; payload: string }
+  | { type: 'setTextAction'; payload: string }
+  | { type: 'setRatingValue'; payload: number };
+
+type FormState = {
+  name: string;
+  text: string;
+  rating: number;
+};
+
+const initialFormState: FormState = {
+  name: '',
+  text: '',
+  rating: 0,
+};
+
+function formReducer(state: FormState, { type, payload }: FormActionArguments) {
+  switch (type) {
+    case 'setNameAction': {
+      return {
+        ...state,
+        name: payload,
+      };
+    }
+    case 'setTextAction': {
+      return {
+        ...state,
+        text: payload,
+      };
+    }
+    case 'setRatingValue': {
+      return {
+        ...state,
+        rating: payload,
+      };
+    }
+    default:
+      return state;
+  }
+}
+
+export const ReviewForm = () => {
+  const [form, dispatch] = useReducer(formReducer, initialFormState);
+
+  return (
+    <form>
+      <label htmlFor="name">Имя</label>
+      <input
+        id="name"
+        type="text"
+        name="reviews"
+        value={form.name}
+        onChange={(event) =>
+          dispatch({
+            type: 'setNameAction',
+            payload: event.target.value,
+          })
+        }
+      />
+      <br />
+      <label htmlFor="text">Отзыв</label>
+      <textarea
+        id="text"
+        value={form.text}
+        onChange={(event) =>
+          dispatch({
+            type: 'setTextAction',
+            payload: event.target.value,
+          })
+        }
+      ></textarea>
+      <br />
+      Рейтинг:{' '}
+      <ReviewRating
+        onRatingChange={(payload) =>
+          dispatch({ type: 'setRatingValue', payload })
+        }
+      ></ReviewRating>
+    </form>
+  );
+};

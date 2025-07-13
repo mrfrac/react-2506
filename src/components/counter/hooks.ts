@@ -1,16 +1,16 @@
 import { useState } from 'react';
 
-export const useCounter = () => {
+export const useCounter = (min: number, max: number) => {
   const [value, setValue] = useState(0);
 
   return {
     increment: () => {
-      if (value >= 5) return;
+      if (value >= max) return;
 
       setValue(value + 1);
     },
     decrement: () => {
-      if (value === 0) return;
+      if (value === min) return;
 
       setValue(value - 1);
     },

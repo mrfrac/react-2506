@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react';
 import type { Restaurant } from '../../types';
 import { Menu } from '../menu/Menu.tsx';
+import { ReviewForm } from '../review-form/ReviewForm.tsx';
 import { Reviews } from '../reviews/Reviews.tsx';
 
 type RestaurantCardProps = {
@@ -23,6 +24,8 @@ export const RestaurantCard: FunctionComponent<RestaurantCardProps> = ({
 
       <h4>Отзывы</h4>
       <Reviews reviews={restaurant.reviews} />
+
+      <ReviewForm />
     </div>
   );
 };
