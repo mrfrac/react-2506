@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react';
 export const ScrollProgress = () => {
   const [width, setWidth] = useState(0);
 
-  const onScroll = () => {
-    setWidth(
-      Math.floor(
-        (document.documentElement.scrollTop /
-          (document.documentElement.scrollHeight -
-            document.documentElement.clientHeight)) *
-          100
-      )
-    );
-  };
-
   useEffect(() => {
+    const onScroll = () => {
+      setWidth(
+        Math.floor(
+          (document.documentElement.scrollTop /
+            (document.documentElement.scrollHeight -
+              document.documentElement.clientHeight)) *
+            100
+        )
+      );
+    };
+
     window.addEventListener('scroll', onScroll);
 
     return () => {
@@ -32,6 +32,6 @@ export const ScrollProgress = () => {
         backgroundColor: 'tomato',
         height: '5px',
       }}
-    ></div>
+    />
   );
 };

@@ -14,6 +14,9 @@ export const useCounter = (min: number, max: number) => {
 
       setValue(value - 1);
     },
+    reset: () => {
+      setValue(min);
+    },
     value,
   };
 };

@@ -1,5 +1,6 @@
-import { useReducer } from 'react';
-import { ReviewRatingCounter } from '../review-rating-counter/ReviewRatingCounter.tsx';
+import { type FormEvent, useReducer } from 'react';
+import { useCounter } from '../counter/use-counter.ts';
+import { Counter } from '../counter/Counter.tsx';
 
 type FormActionArguments =
   | { type: 'setNameAction'; payload: string }
@@ -10,13 +11,11 @@ type FormActionArguments =
 type FormState = {
   name: string;
   text: string;
-  rating: number;
 };
 
 const initialFormState: FormState = {
   name: '',
   text: '',
-  rating: 0,
 };
 
 function formReducer(state: FormState, { type, payload }: FormActionArguments) {
@@ -52,6 +51,7 @@ function formReducer(state: FormState, { type, payload }: FormActionArguments) {
 
 export const ReviewForm = () => {
   const [form, dispatch] = useReducer(formReducer, initialFormState);
+  const { value, increment, decrement, reset } = useCounter(0, 5);
 
   return (
     <form
@@ -61,6 +61,7 @@ export const ReviewForm = () => {
         maxWidth: '400px',
         rowGap: '8px',
       }}
+      onSubmit={(e: FormEvent) => e.preventDefault()}
     >
       <label htmlFor="name">
         <strong>Имя</strong>
@@ -94,17 +95,18 @@ export const ReviewForm = () => {
 
       <strong>Рейтинг</strong>
 
-      <ReviewRatingCounter
-        onRatingChange={(payload) =>
-          dispatch({ type: 'setRatingValueAction', payload })
-        }
-      ></ReviewRatingCounter>
+      <Counter
+        onDecrementClicked={decrement}
+        onIncrementClicked={increment}
+        value={value}
+      />
 
       <button
         type="button"
-        onClick={() =>
-          dispatch({ type: 'clearReviewAction', payload: undefined })
-        }
+        onClick={() => {
+          dispatch({ type: 'clearReviewAction', payload: undefined });
+          reset();
+        }}
       >
         Clear
       </button>
