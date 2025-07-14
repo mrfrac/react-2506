@@ -1,5 +1,5 @@
 import { Counter } from '../counter/Counter.tsx';
-import { useCounter } from '../counter/hooks.ts';
+import { useCounter } from '../counter/use-counter.ts';
 
 export const DishCounter = () => {
   const { value, decrement, increment } = useCounter(0, 10);

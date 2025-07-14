@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { ReviewRating } from '../review-rating/ReviewRating.tsx';
+import { ReviewRatingCounter } from '../review-rating-counter/ReviewRatingCounter.tsx';
 
 type FormActionArguments =
   | { type: 'setNameAction'; payload: string }
@@ -94,11 +94,11 @@ export const ReviewForm = () => {
 
       <strong>Рейтинг</strong>
 
-      <ReviewRating
+      <ReviewRatingCounter
         onRatingChange={(payload) =>
           dispatch({ type: 'setRatingValueAction', payload })
         }
-      ></ReviewRating>
+      ></ReviewRatingCounter>
 
       <button
         type="button"

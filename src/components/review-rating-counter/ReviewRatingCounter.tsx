@@ -1,12 +1,12 @@
 import { type FunctionComponent, useEffect } from 'react';
 import { Counter } from '../counter/Counter.tsx';
-import { useCounter } from '../counter/hooks.ts';
+import { useCounter } from '../counter/use-counter.ts';
 
 type ReviewRatingProps = {
   onRatingChange: (value: number) => void;
 };
 
-export const ReviewRating: FunctionComponent<ReviewRatingProps> = ({
+export const ReviewRatingCounter: FunctionComponent<ReviewRatingProps> = ({
   onRatingChange,
 }) => {
   const { value, increment, decrement } = useCounter(0, 5);
