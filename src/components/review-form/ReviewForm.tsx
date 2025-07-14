@@ -54,8 +54,17 @@ export const ReviewForm = () => {
   const [form, dispatch] = useReducer(formReducer, initialFormState);
 
   return (
-    <form>
-      <label htmlFor="name">Имя</label>
+    <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '400px',
+        rowGap: '8px',
+      }}
+    >
+      <label htmlFor="name">
+        <strong>Имя</strong>
+      </label>
       <input
         id="name"
         type="text"
@@ -68,8 +77,10 @@ export const ReviewForm = () => {
           })
         }
       />
-      <br />
-      <label htmlFor="text">Отзыв</label>
+
+      <label htmlFor="text">
+        <strong>Отзыв</strong>
+      </label>
       <textarea
         id="text"
         value={form.text}
@@ -80,14 +91,15 @@ export const ReviewForm = () => {
           })
         }
       ></textarea>
-      <br />
-      Рейтинг:{' '}
+
+      <strong>Рейтинг</strong>
+
       <ReviewRating
         onRatingChange={(payload) =>
           dispatch({ type: 'setRatingValueAction', payload })
         }
       ></ReviewRating>
-      <br />
+
       <button
         type="button"
         onClick={() =>

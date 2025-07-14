@@ -12,7 +12,7 @@ export const Counter: FunctionComponent<CounterProps> = ({
   value,
 }) => {
   return (
-    <>
+    <div style={{ display: 'flex', columnGap: '4px' }}>
       <button type="button" onClick={onDecrementClicked}>
         -
       </button>
@@ -20,6 +20,6 @@ export const Counter: FunctionComponent<CounterProps> = ({
       <button type="button" onClick={onIncrementClicked}>
         +
       </button>
-    </>
+    </div>
   );
 };
