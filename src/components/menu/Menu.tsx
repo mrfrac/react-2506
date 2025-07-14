@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 import type { Menu as MenuType } from '../../types';
-import { Counter } from '../counter/Counter.tsx';
+import { DishCounter } from '../dish-counter/DishCounter.tsx';
 
 type MenuProps = {
   menu: MenuType[];
@@ -12,7 +12,8 @@ export const Menu: FunctionComponent<MenuProps> = ({ menu }) => {
       {menu.map((menuItem) => (
         <li key={menuItem.id}>
           {menuItem.name} ({menuItem.ingredients.join(', ')}): {menuItem.price}{' '}
-          &#x20bd; <Counter />
+          &#x20bd;
+          <DishCounter />
         </li>
       ))}
     </ul>

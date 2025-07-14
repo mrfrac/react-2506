@@ -1,17 +1,25 @@
-import { useCounter } from './hooks.ts';
+import { type FunctionComponent } from 'react';
 
-export const Counter = () => {
-  const { value, increment, decrement } = useCounter();
+type CounterProps = {
+  onIncrementClicked: () => void;
+  onDecrementClicked: () => void;
+  value: number;
+};
 
+export const Counter: FunctionComponent<CounterProps> = ({
+  onIncrementClicked,
+  onDecrementClicked,
+  value,
+}) => {
   return (
-    <>
-      <button type="button" onClick={decrement}>
+    <div style={{ display: 'flex', columnGap: '4px' }}>
+      <button type="button" onClick={onDecrementClicked}>
         -
       </button>
       {value}
-      <button type="button" onClick={increment}>
+      <button type="button" onClick={onIncrementClicked}>
         +
       </button>
-    </>
+    </div>
   );
 };
