@@ -1,4 +1,5 @@
 import { type FunctionComponent } from 'react';
+import styles from './counter.module.css';
 
 type CounterProps = {
   onIncrementClicked: () => void;
@@ -12,7 +13,7 @@ export const Counter: FunctionComponent<CounterProps> = ({
   value,
 }) => {
   return (
-    <div style={{ display: 'flex', columnGap: '4px' }}>
+    <div className={styles.counter}>
       <button type="button" onClick={onDecrementClicked}>
         -
       </button>
