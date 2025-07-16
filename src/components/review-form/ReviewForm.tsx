@@ -1,21 +1,24 @@
 import { type FormEvent, useReducer } from 'react';
-import { useCounter } from '../counter/use-counter.ts';
 import { Counter } from '../counter/Counter.tsx';
 
 type FormActionArguments =
   | { type: 'setNameAction'; payload: string }
   | { type: 'setTextAction'; payload: string }
   | { type: 'setRatingValueAction'; payload: number }
-  | { type: 'clearReviewAction'; payload: undefined };
+  | { type: 'clearReviewAction'; payload: undefined }
+  | { type: 'increaseRatingAction'; payload: undefined }
+  | { type: 'decreaseRatingAction'; payload: undefined };
 
 type FormState = {
   name: string;
   text: string;
+  rating: number;
 };
 
 const initialFormState: FormState = {
   name: '',
   text: '',
+  rating: 0,
 };
 
 function formReducer(state: FormState, { type, payload }: FormActionArguments) {
@@ -44,6 +47,18 @@ function formReducer(state: FormState, { type, payload }: FormActionArguments) {
         rating: 0,
       };
     }
+    case 'increaseRatingAction': {
+      return {
+        ...state,
+        rating: state.rating + 1,
+      };
+    }
+    case 'decreaseRatingAction': {
+      return {
+        ...state,
+        rating: state.rating - 1,
+      };
+    }
     default:
       return state;
   }
@@ -51,7 +66,6 @@ function formReducer(state: FormState, { type, payload }: FormActionArguments) {
 
 export const ReviewForm = () => {
   const [form, dispatch] = useReducer(formReducer, initialFormState);
-  const { value, increment, decrement, reset } = useCounter(0, 5);
 
   return (
     <form
@@ -96,16 +110,19 @@ export const ReviewForm = () => {
       <strong>Рейтинг</strong>
 
       <Counter
-        onDecrementClicked={decrement}
-        onIncrementClicked={increment}
-        value={value}
+        onDecrementClicked={() =>
+          dispatch({ type: 'decreaseRatingAction', payload: undefined })
+        }
+        onIncrementClicked={() =>
+          dispatch({ type: 'increaseRatingAction', payload: undefined })
+        }
+        value={form.rating}
       />
 
       <button
         type="button"
         onClick={() => {
           dispatch({ type: 'clearReviewAction', payload: undefined });
-          reset();
         }}
       >
         Clear
