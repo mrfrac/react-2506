@@ -1,6 +1,8 @@
+import classNames from 'classnames';
 import { type FunctionComponent, useState } from 'react';
 import type { Restaurant } from '../../types';
 import { RestaurantCard } from '../restaurant-card/RestaurantCard.tsx';
+import styles from './restaurant-page.module.css';
 
 type RestaurantsPageProps = {
   restaurants: Restaurant[];
@@ -16,23 +18,14 @@ export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
 
   return (
     <>
-      <ul
-        style={{
-          listStyle: 'none',
-          padding: 0,
-          margin: '16px',
-          display: 'flex',
-          gap: '16px',
-        }}
-      >
+      <ul className={styles.list}>
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
             <button
               type="button"
-              style={{
-                backgroundColor:
-                  selectedId === restaurant.id ? '#ccc' : 'initial',
-              }}
+              className={classNames({
+                [styles.activeItem]: selectedId === restaurant.id,
+              })}
               onClick={() => setSelectedId(restaurant.id)}
             >
               <h2>{restaurant.name}</h2>

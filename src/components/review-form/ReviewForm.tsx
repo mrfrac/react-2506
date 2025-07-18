@@ -1,5 +1,6 @@
 import { type FormEvent, useReducer } from 'react';
 import { Counter } from '../counter/Counter.tsx';
+import styles from './review-form.module.css';
 
 type FormActionArguments =
   | { type: 'setNameAction'; payload: string }
@@ -69,12 +70,7 @@ export const ReviewForm = () => {
 
   return (
     <form
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        maxWidth: '400px',
-        rowGap: '8px',
-      }}
+      className={styles.form}
       onSubmit={(e: FormEvent) => e.preventDefault()}
     >
       <label htmlFor="name">
