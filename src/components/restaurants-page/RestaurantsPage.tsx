@@ -24,7 +24,7 @@ export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
             <button
               type="button"
               className={classNames({
-                [styles.item]: selectedId === restaurant.id,
+                [styles.activeItem]: selectedId === restaurant.id,
               })}
               onClick={() => setSelectedId(restaurant.id)}
             >
