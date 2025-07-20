@@ -4,14 +4,17 @@ import { RestaurantsPage } from '../restaurants-page/RestaurantsPage.tsx';
 import { ScrollProgress } from '../scroll-progress/ScrollProgress.tsx';
 import 'normalize.css/normalize.css';
 import { ThemeContextProvider } from '../theme-context/theme-context-provider.tsx';
+import { UserContextProvider } from '../user-context/user-context-provider.tsx';
 
 export const App = () => {
   return (
-    <ThemeContextProvider>
-      <Layout>
-        <ScrollProgress />
-        <RestaurantsPage restaurants={restaurants} />
-      </Layout>
-    </ThemeContextProvider>
+    <UserContextProvider>
+      <ThemeContextProvider>
+        <Layout>
+          <ScrollProgress />
+          <RestaurantsPage restaurants={restaurants} />
+        </Layout>
+      </ThemeContextProvider>
+    </UserContextProvider>
   );
 };

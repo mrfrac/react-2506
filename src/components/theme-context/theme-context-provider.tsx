@@ -1,18 +1,12 @@
-import {
-  createContext,
-  type FunctionComponent,
-  type ReactNode,
-  useState,
-} from 'react';
+import { type FunctionComponent, type ReactNode, useState } from 'react';
+import { ThemeContext } from './theme-context.ts';
+
+type ThemesType = 'light' | 'dark';
 
 export type ThemeContextType = {
-  theme: 'light' | 'dark';
+  theme: ThemesType;
   toggleTheme: () => void;
 };
-
-export const ThemeContext = createContext<ThemeContextType>({
-  theme: 'light',
-});
 
 type ThemeProviderProps = {
   children: ReactNode;
@@ -21,7 +15,7 @@ type ThemeProviderProps = {
 export const ThemeContextProvider: FunctionComponent<ThemeProviderProps> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState<ThemesType>('light');
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
