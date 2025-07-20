@@ -9,3 +9,13 @@
 .activeItem {
   background-color: #ccc;
 }
+
+.dark.restaurantButton {
+  background-color: #5c5959;
+  color: #ccc;
+}
+
+.dark.activeItem {
+  background-color: #aaa;
+  color: #fff;
+}
