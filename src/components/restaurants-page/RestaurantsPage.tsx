@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { type FunctionComponent, useState } from 'react';
 import type { Restaurant } from '../../types';
 import { RestaurantCard } from '../restaurant-card/RestaurantCard.tsx';
+import { useTheme } from '../theme-context/use-theme.ts';
 import styles from './restaurant-page.module.css';
 
 type RestaurantsPageProps = {
@@ -15,6 +16,7 @@ export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
   const selectedRestaurant = restaurants.find(
     (restaurant) => restaurant.id === selectedId
   );
+  const { theme } = useTheme();
 
   return (
     <>
@@ -23,8 +25,10 @@ export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
           <li key={restaurant.id}>
             <button
               type="button"
-              className={classNames({
+              className={classNames(styles.restaurantButton, {
                 [styles.activeItem]: selectedId === restaurant.id,
+                [styles.dark]: theme === 'dark',
+                [styles.light]: theme === 'light',
               })}
               onClick={() => setSelectedId(restaurant.id)}
             >
