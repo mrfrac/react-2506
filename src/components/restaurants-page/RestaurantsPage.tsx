@@ -25,8 +25,7 @@ export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
           <li key={restaurant.id}>
             <button
               type="button"
-              className={classNames({
-                [styles.restaurantButton]: true,
+              className={classNames(styles.restaurantButton, {
                 [styles.activeItem]: selectedId === restaurant.id,
                 [styles.dark]: theme === 'dark',
                 [styles.light]: theme === 'light',
