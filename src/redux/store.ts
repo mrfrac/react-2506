@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { dishSlice } from './entities/dishes/slice.ts';
-import { reviewSlice } from './entities/reviews/slice.ts';
+import { dishesSlice } from './entities/dishes/slice.ts';
+import { reviewsSlice } from './entities/reviews/slice.ts';
+import { usersSlice } from './entities/users/slice.ts';
 
 export const store = configureStore({
   reducer: {
-    [dishSlice.name]: dishSlice.reducer,
-    [reviewSlice.name]: reviewSlice.reducer,
+    [dishesSlice.name]: dishesSlice.reducer,
+    [reviewsSlice.name]: reviewsSlice.reducer,
+    [usersSlice.name]: usersSlice.reducer,
   },
 });

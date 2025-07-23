@@ -1,32 +1,33 @@
 import type { NormalizedDish } from '../../../types/normalized-dish.ts';
 import { normalizedDishes } from '../../../constants/normalized-mock.ts';
-import { createSlice } from '@reduxjs/toolkit';
+import {
+  createEntityAdapter,
+  createSlice,
+  type EntityState,
+} from '@reduxjs/toolkit';
 
-type DishEntity = {
-  [key: string]: NormalizedDish;
-};
-
-type DishesState = {
-  ids: string[];
-  entities: DishEntity;
-};
-
-const initialState: DishesState = {
+const initialState: EntityState<NormalizedDish, string> = {
   ids: normalizedDishes.map(({ id }) => id),
-  entities: normalizedDishes.reduce((acc, dish) => {
-    acc[dish.id] = dish;
+  entities: normalizedDishes.reduce(
+    (acc, dish) => {
+      acc[dish.id] = dish;
 
-    return acc;
-  }, {} as DishEntity),
+      return acc;
+    },
+    {} as Record<string, NormalizedDish>
+  ),
 };
 
-export const dishSlice = createSlice({
+export const dishesSlice = createSlice({
   name: 'dishes',
   initialState,
   selectors: {
-    selectDishById: (state: DishesState, id: string) => state.entities[id],
+    selectDishById: (state: EntityState<NormalizedDish, string>, id: string) =>
+      state.entities[id],
   },
   reducers: {},
 });
 
-export const { selectDishById } = dishSlice.selectors;
+export const { selectDishById } = dishesSlice.selectors;
+
+createEntityAdapter();
