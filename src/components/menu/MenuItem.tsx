@@ -15,7 +15,7 @@ export const MenuItem: FC<MenuItemProps> = ({ dishId }) => {
   return (
     <>
       {dish.name} ({dish.ingredients.join(', ')}): {dish.price} &#x20bd;
-      {user && <DishCounter />}
+      {user && <DishCounter dishId={dishId} />}
     </>
   );
 };
