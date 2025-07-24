@@ -9,8 +9,11 @@ import {
   selectRestaurantById,
   selectRestaurants,
 } from '../../redux/entities/restaurants/slice.ts';
+import { Cart } from '../cart/Cart.tsx';
+import { useUser } from '../user-context/use-user.ts';
 
 export const RestaurantsPage = () => {
+  const { user } = useUser();
   const restaurants = useSelector(selectRestaurants);
   const defaultRestaurantId = useSelector(selectDefaultRestaurantId);
   const [selectedId, setSelectedId] = useState<string>(defaultRestaurantId);
@@ -21,6 +24,7 @@ export const RestaurantsPage = () => {
 
   return (
     <>
+      {user && <Cart />}
       <ul className={styles.list}>
         {Object.values(restaurants).map((restaurant) => (
           <li key={restaurant.id}>
