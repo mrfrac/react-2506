@@ -1,8 +1,8 @@
 import { createSlice, type EntityState } from '@reduxjs/toolkit';
-import type { NormalizedUser } from '../../../types/normalized-user.ts';
+import type { User } from '../../../types/user.ts';
 import { normalizedUsers } from '../../../constants/normalized-mock.ts';
 
-const initialState: EntityState<NormalizedUser, string> = {
+const initialState: EntityState<User, string> = {
   ids: normalizedUsers.map(({ id }) => id),
   entities: normalizedUsers.reduce(
     (acc, user) => {
@@ -10,7 +10,7 @@ const initialState: EntityState<NormalizedUser, string> = {
 
       return acc;
     },
-    {} as Record<string, NormalizedUser>
+    {} as Record<string, User>
   ),
 };
 
@@ -18,7 +18,7 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   selectors: {
-    selectUserById: (state: EntityState<NormalizedUser, string>, id: string) =>
+    selectUserById: (state: EntityState<User, string>, id: string) =>
       state.entities[id],
   },
   reducers: {},

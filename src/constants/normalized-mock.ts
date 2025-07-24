@@ -1,5 +1,5 @@
-import type { NormalizedDish } from '../types/normalized-dish.ts';
-import type { NormalizedUser } from '../types/normalized-user.ts';
+import type { Dish } from '../types/dish.ts';
+import type { User } from '../types/user.ts';
 import type { Restaurant } from '../types';
 
 export const normalizedRestaurants: Restaurant[] = [
@@ -53,7 +53,7 @@ export const normalizedRestaurants: Restaurant[] = [
   },
 ];
 
-export const normalizedDishes: NormalizedDish[] = [
+export const normalizedDishes: Dish[] = [
   {
     id: 'd75f762a-eadd-49be-8918-ed0daa8dd024',
     name: 'Chicken tikka masala',
@@ -167,7 +167,7 @@ export const normalizedReviews = [
   },
 ];
 
-export const normalizedUsers: NormalizedUser[] = [
+export const normalizedUsers: User[] = [
   {
     id: 'a304959a-76c0-4b34-954a-b38dbf310360',
     name: 'Antony',
