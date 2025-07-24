@@ -1,27 +1,28 @@
 import classNames from 'classnames';
-import { type FunctionComponent, useState } from 'react';
-import type { Restaurant } from '../../types';
+import { useState } from 'react';
 import { RestaurantCard } from '../restaurant-card/RestaurantCard.tsx';
 import { useTheme } from '../theme-context/use-theme.ts';
 import styles from './restaurant-page.module.css';
+import { useSelector } from 'react-redux';
+import {
+  selectDefaultRestaurantId,
+  selectRestaurantById,
+  selectRestaurants,
+} from '../../redux/entities/restaurants/slice.ts';
 
-type RestaurantsPageProps = {
-  restaurants: Restaurant[];
-};
-
-export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
-  restaurants,
-}) => {
-  const [selectedId, setSelectedId] = useState<string>(restaurants[0].id);
-  const selectedRestaurant = restaurants.find(
-    (restaurant) => restaurant.id === selectedId
+export const RestaurantsPage = () => {
+  const restaurants = useSelector(selectRestaurants);
+  const defaultRestaurantId = useSelector(selectDefaultRestaurantId);
+  const [selectedId, setSelectedId] = useState<string>(defaultRestaurantId);
+  const selectedRestaurant = useSelector((state) =>
+    selectRestaurantById(state, selectedId)
   );
   const { theme } = useTheme();
 
   return (
     <>
       <ul className={styles.list}>
-        {restaurants.map((restaurant) => (
+        {Object.values(restaurants).map((restaurant) => (
           <li key={restaurant.id}>
             <button
               type="button"

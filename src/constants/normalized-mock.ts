@@ -1,8 +1,8 @@
 import type { NormalizedDish } from '../types/normalized-dish.ts';
 import type { NormalizedUser } from '../types/normalized-user.ts';
-import type { NormalizedRestaurant } from '../types/normalized-restaurant.ts';
+import type { Restaurant } from '../types';
 
-export const normalizedRestaurants: NormalizedRestaurant[] = [
+export const normalizedRestaurants: Restaurant[] = [
   {
     id: 'a757a0e9-03c1-4a2a-b384-8ac21dbe2fb2',
     name: 'Dishoom',

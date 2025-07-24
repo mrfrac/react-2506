@@ -1,4 +1,3 @@
-import { restaurants } from '../../constants/mock.ts';
 import { Layout } from '../layout/Layout.tsx';
 import { RestaurantsPage } from '../restaurants-page/RestaurantsPage.tsx';
 import { ScrollProgress } from '../scroll-progress/ScrollProgress.tsx';
@@ -15,7 +14,7 @@ export const App = () => {
         <ThemeContextProvider>
           <Layout>
             <ScrollProgress />
-            <RestaurantsPage restaurants={restaurants} />
+            <RestaurantsPage />
           </Layout>
         </ThemeContextProvider>
       </UserContextProvider>

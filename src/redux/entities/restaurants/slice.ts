@@ -1,8 +1,8 @@
 import { createSlice, type EntityState } from '@reduxjs/toolkit';
-import type { NormalizedRestaurant } from '../../../types/normalized-restaurant.ts';
+import type { Restaurant } from '../../../types';
 import { normalizedRestaurants } from '../../../constants/normalized-mock.ts';
 
-const initialState: EntityState<NormalizedRestaurant, string> = {
+const initialState: EntityState<Restaurant, string> = {
   ids: normalizedRestaurants.map(({ id }) => id),
   entities: normalizedRestaurants.reduce(
     (acc, restaurant) => {
@@ -10,7 +10,7 @@ const initialState: EntityState<NormalizedRestaurant, string> = {
 
       return acc;
     },
-    {} as Record<string, NormalizedRestaurant>
+    {} as Record<string, Restaurant>
   ),
 };
 
@@ -19,11 +19,19 @@ export const restaurantsSlice = createSlice({
   initialState,
   selectors: {
     selectRestaurantById: (
-      state: EntityState<NormalizedRestaurant, string>,
+      state: EntityState<Restaurant, string>,
       id: string
     ) => state.entities[id],
+    selectRestaurants: (state: EntityState<Restaurant, string>) =>
+      state.entities,
+    selectDefaultRestaurantId: (state: EntityState<Restaurant, string>) =>
+      state.ids[0],
   },
   reducers: {},
 });
 
-export const { selectRestaurantById } = restaurantsSlice.selectors;
+export const {
+  selectRestaurantById,
+  selectRestaurants,
+  selectDefaultRestaurantId,
+} = restaurantsSlice.selectors;
