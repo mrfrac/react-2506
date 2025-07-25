@@ -1,13 +1,15 @@
-import type { ReactNode } from 'react';
 import { Footer } from '../footer/Footer.tsx';
 import { Header } from '../header/Header.tsx';
 import styles from './layout.module.css';
+import { Outlet } from 'react-router';
+import { ScrollProgress } from '../scroll-progress/ScrollProgress.tsx';
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+export const Layout = () => {
   return (
     <div className={styles.layout}>
+      <ScrollProgress />
       <Header />
-      {children}
+      <Outlet />
       <Footer />
     </div>
   );
