@@ -1,49 +1,37 @@
-import classNames from 'classnames';
 import { useState } from 'react';
 import { RestaurantCard } from '../restaurant-card/RestaurantCard.tsx';
-import { useTheme } from '../theme-context/use-theme.ts';
 import styles from './restaurant-page.module.css';
 import { useSelector } from 'react-redux';
 import {
   selectDefaultRestaurantId,
-  selectRestaurantById,
-  selectRestaurants,
+  selectRestaurantsIds,
 } from '../../redux/entities/restaurants/slice.ts';
 import { Cart } from '../cart/Cart.tsx';
 import { useUser } from '../user-context/use-user.ts';
+import { RestaurantButton } from '../restaurant-button/RestaurantButton.tsx';
 
 export const RestaurantsPage = () => {
   const { user } = useUser();
-  const restaurants = useSelector(selectRestaurants);
+  const restaurantsIds = useSelector(selectRestaurantsIds);
   const defaultRestaurantId = useSelector(selectDefaultRestaurantId);
   const [selectedId, setSelectedId] = useState<string>(defaultRestaurantId);
-  const selectedRestaurant = useSelector((state) =>
-    selectRestaurantById(state, selectedId)
-  );
-  const { theme } = useTheme();
 
   return (
     <>
       {user && <Cart />}
       <ul className={styles.list}>
-        {Object.values(restaurants).map((restaurant) => (
-          <li key={restaurant.id}>
-            <button
-              type="button"
-              className={classNames(styles.restaurantButton, {
-                [styles.activeItem]: selectedId === restaurant.id,
-                [styles.dark]: theme === 'dark',
-                [styles.light]: theme === 'light',
-              })}
-              onClick={() => setSelectedId(restaurant.id)}
-            >
-              <h2>{restaurant.name}</h2>
-            </button>
+        {restaurantsIds.map((restaurantId) => (
+          <li key={restaurantId}>
+            <RestaurantButton
+              restaurantId={restaurantId}
+              active={selectedId === restaurantId}
+              onClick={() => setSelectedId(restaurantId)}
+            />
           </li>
         ))}
       </ul>
 
-      {selectedRestaurant && <RestaurantCard restaurant={selectedRestaurant} />}
+      {selectedId && <RestaurantCard restaurantId={selectedId} />}
     </>
   );
 };

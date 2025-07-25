@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { selectCartItems } from '../../redux/entities/cart/slice.ts';
+import { selectCartItemsIds } from '../../redux/entities/cart/slice.ts';
 import styles from './cart.module.css';
 import { CartItem } from './CartItem.tsx';
 
 export const Cart = () => {
-  const cartItems = useSelector(selectCartItems);
+  const cartItems = useSelector(selectCartItemsIds);
 
   if (cartItems.length === 0) {
     return <span>Пусто</span>;
@@ -12,12 +12,8 @@ export const Cart = () => {
 
   return (
     <div className={styles.cart}>
-      {cartItems.map((cartItem) => (
-        <CartItem
-          key={cartItem.id}
-          dishId={cartItem.id}
-          amount={cartItem.amount}
-        />
+      {cartItems.map((cartItemId) => (
+        <CartItem key={cartItemId} dishId={cartItemId} />
       ))}
     </div>
   );

@@ -8,14 +8,11 @@ import {
 
 const initialState: EntityState<Dish, string> = {
   ids: normalizedDishes.map(({ id }) => id),
-  entities: normalizedDishes.reduce(
-    (acc, dish) => {
-      acc[dish.id] = dish;
+  entities: normalizedDishes.reduce<Record<string, Dish>>((acc, dish) => {
+    acc[dish.id] = dish;
 
-      return acc;
-    },
-    {} as Record<string, Dish>
-  ),
+    return acc;
+  }, {}),
 };
 
 export const dishesSlice = createSlice({
