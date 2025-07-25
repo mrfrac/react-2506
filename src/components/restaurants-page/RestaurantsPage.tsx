@@ -1,44 +1,37 @@
-import classNames from 'classnames';
-import { type FunctionComponent, useState } from 'react';
-import type { Restaurant } from '../../types';
+import { useState } from 'react';
 import { RestaurantCard } from '../restaurant-card/RestaurantCard.tsx';
-import { useTheme } from '../theme-context/use-theme.ts';
 import styles from './restaurant-page.module.css';
+import { useSelector } from 'react-redux';
+import {
+  selectDefaultRestaurantId,
+  selectRestaurantsIds,
+} from '../../redux/entities/restaurants/slice.ts';
+import { Cart } from '../cart/Cart.tsx';
+import { useUser } from '../user-context/use-user.ts';
+import { RestaurantButton } from '../restaurant-button/RestaurantButton.tsx';
 
-type RestaurantsPageProps = {
-  restaurants: Restaurant[];
-};
-
-export const RestaurantsPage: FunctionComponent<RestaurantsPageProps> = ({
-  restaurants,
-}) => {
-  const [selectedId, setSelectedId] = useState<string>(restaurants[0].id);
-  const selectedRestaurant = restaurants.find(
-    (restaurant) => restaurant.id === selectedId
-  );
-  const { theme } = useTheme();
+export const RestaurantsPage = () => {
+  const { user } = useUser();
+  const restaurantsIds = useSelector(selectRestaurantsIds);
+  const defaultRestaurantId = useSelector(selectDefaultRestaurantId);
+  const [selectedId, setSelectedId] = useState<string>(defaultRestaurantId);
 
   return (
     <>
+      {user && <Cart />}
       <ul className={styles.list}>
-        {restaurants.map((restaurant) => (
-          <li key={restaurant.id}>
-            <button
-              type="button"
-              className={classNames(styles.restaurantButton, {
-                [styles.activeItem]: selectedId === restaurant.id,
-                [styles.dark]: theme === 'dark',
-                [styles.light]: theme === 'light',
-              })}
-              onClick={() => setSelectedId(restaurant.id)}
-            >
-              <h2>{restaurant.name}</h2>
-            </button>
+        {restaurantsIds.map((restaurantId) => (
+          <li key={restaurantId}>
+            <RestaurantButton
+              restaurantId={restaurantId}
+              active={selectedId === restaurantId}
+              onClick={() => setSelectedId(restaurantId)}
+            />
           </li>
         ))}
       </ul>
 
-      {selectedRestaurant && <RestaurantCard restaurant={selectedRestaurant} />}
+      {selectedId && <RestaurantCard restaurantId={selectedId} />}
     </>
   );
 };

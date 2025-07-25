@@ -1,18 +1,16 @@
 import type { FunctionComponent } from 'react';
-import type { Review } from '../../types';
-import { Rating } from './Rating.tsx';
+import { ReviewItem } from './ReviewItem.tsx';
 
 type ReviewsProps = {
-  reviews: Review[];
+  reviewsIds: string[];
 };
 
-export const Reviews: FunctionComponent<ReviewsProps> = ({ reviews }) => {
+export const Reviews: FunctionComponent<ReviewsProps> = ({ reviewsIds }) => {
   return (
     <ul>
-      {reviews.map((review) => (
-        <li key={review.id}>
-          <strong>{review.user}</strong>: {review.text} (
-          <Rating rating={review.rating} />)
+      {reviewsIds.map((reviewId) => (
+        <li key={reviewId}>
+          <ReviewItem reviewId={reviewId} />
         </li>
       ))}
     </ul>
