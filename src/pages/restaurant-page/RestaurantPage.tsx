@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useParams } from 'react-router';
-import { RestaurantCard } from '../components/restaurant-card/RestaurantCard.tsx';
 import classNames from 'classnames';
 import styles from './restaurant-page.module.css';
+import { RestaurantCard } from '../../components/restaurant-card/RestaurantCard.tsx';
 
 export const RestaurantPage = () => {
   const { restaurantId } = useParams();

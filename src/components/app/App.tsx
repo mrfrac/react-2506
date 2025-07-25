@@ -7,9 +7,10 @@ import { store } from '../../redux/store.ts';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { HomePage } from '../home-page/HomePage.tsx';
 import { RestaurantsPage } from '../restaurants-page/RestaurantsPage.tsx';
-import { RestaurantPage } from '../../pages/RestaurantPage.tsx';
 import { RestaurantMenu } from '../restaurant-menu/RestaurantMenu.tsx';
 import { RestaurantReviews } from '../../restaurant-reviews/RestaurantReviews.tsx';
+import { RestaurantPage } from '../../pages/restaurant-page/RestaurantPage.tsx';
+import { DishPage } from '../../pages/dish-page/DishPage.tsx';
 
 export const App = () => {
   return (
@@ -30,6 +31,7 @@ export const App = () => {
                   <Route path="reviews" element={<RestaurantReviews />} />
                 </Route>
               </Route>
+              <Route path="/dish/:dishId" element={<DishPage />} />
             </Routes>
           </BrowserRouter>
         </ThemeContextProvider>
