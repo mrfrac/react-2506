@@ -1,0 +1,7 @@
+.active {
+  color: #5c5959;
+}
+
+.navLink:has(.active) {
+  text-decoration: none;
+}
