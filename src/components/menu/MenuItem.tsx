@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectDishById } from '../../redux/entities/dishes/slice.ts';
 import { DishCounter } from '../dish-counter/DishCounter.tsx';
 import { useUser } from '../user-context/use-user.ts';
+import type { RootState } from '../../redux/store.ts';
 
 type MenuItemProps = {
   dishId: string;
@@ -10,7 +11,7 @@ type MenuItemProps = {
 
 export const MenuItem: FC<MenuItemProps> = ({ dishId }) => {
   const { user } = useUser();
-  const dish = useSelector((state) => selectDishById(state, dishId));
+  const dish = useSelector((state: RootState) => selectDishById(state, dishId));
 
   return (
     <>

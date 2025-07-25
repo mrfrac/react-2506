@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
+import type { RootState } from '../../store.ts';
 
 type CartState = {
   [key: string]: number;
@@ -30,7 +31,8 @@ export const cartSlice = createSlice({
   },
 });
 
-export const selectCartSlice = (state): CartState => state[cartSlice.name];
+export const selectCartSlice = (state: RootState): CartState =>
+  state[cartSlice.name];
 
 export const selectCartItemsIds = createSelector(
   [selectCartSlice],

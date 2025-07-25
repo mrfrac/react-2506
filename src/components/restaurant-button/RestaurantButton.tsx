@@ -4,11 +4,12 @@ import { selectRestaurantById } from '../../redux/entities/restaurants/slice.ts'
 import classNames from 'classnames';
 import styles from '../restaurants-page/restaurant-page.module.css';
 import { useTheme } from '../theme-context/use-theme.ts';
+import type { RootState } from '../../redux/store.ts';
 
 type RestaurantButtonProps = {
   restaurantId: string;
   active: boolean;
-  onClick: (id: string) => void;
+  onClick: (_id: string) => void;
 };
 
 export const RestaurantButton: FC<RestaurantButtonProps> = ({
@@ -16,7 +17,7 @@ export const RestaurantButton: FC<RestaurantButtonProps> = ({
   active,
   onClick,
 }) => {
-  const restaurant = useSelector((state) =>
+  const restaurant = useSelector((state: RootState) =>
     selectRestaurantById(state, restaurantId)
   );
   const { theme } = useTheme();

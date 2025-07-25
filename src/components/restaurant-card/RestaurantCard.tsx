@@ -6,6 +6,7 @@ import { Menu } from '../menu/Menu.tsx';
 import { Reviews } from '../reviews/Reviews.tsx';
 import { useSelector } from 'react-redux';
 import { selectRestaurantById } from '../../redux/entities/restaurants/slice.ts';
+import type { RootState } from '../../redux/store.ts';
 
 type RestaurantCardProps = {
   restaurantId: string;
@@ -15,7 +16,7 @@ export const RestaurantCard: FunctionComponent<RestaurantCardProps> = ({
   restaurantId,
 }) => {
   const { user } = useUser();
-  const restaurant = useSelector((state) =>
+  const restaurant = useSelector((state: RootState) =>
     selectRestaurantById(state, restaurantId)
   );
 
