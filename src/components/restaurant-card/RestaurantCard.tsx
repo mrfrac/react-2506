@@ -1,29 +1,33 @@
 import type { FunctionComponent } from 'react';
-import type { Restaurant } from '../../types';
-import { Menu } from '../menu/Menu.tsx';
 import { ReviewForm } from '../review-form/ReviewForm.tsx';
-import { Reviews } from '../reviews/Reviews.tsx';
 import { useUser } from '../user-context/use-user.ts';
 import styles from './restaurant-card.module.css';
+import { Menu } from '../menu/Menu.tsx';
+import { Reviews } from '../reviews/Reviews.tsx';
+import { useSelector } from 'react-redux';
+import { selectRestaurantById } from '../../redux/entities/restaurants/slice.ts';
 
 type RestaurantCardProps = {
-  restaurant: Restaurant;
+  restaurantId: string;
 };
 
 export const RestaurantCard: FunctionComponent<RestaurantCardProps> = ({
-  restaurant,
+  restaurantId,
 }) => {
   const { user } = useUser();
+  const restaurant = useSelector((state) =>
+    selectRestaurantById(state, restaurantId)
+  );
 
   return (
     <div className={styles.card}>
       <h3>{restaurant.name}</h3>
 
       <h4>Меню</h4>
-      <Menu menu={restaurant.menu} />
+      <Menu dishesIds={restaurant.menu} />
 
       <h4>Отзывы</h4>
-      <Reviews reviews={restaurant.reviews} />
+      <Reviews reviewsIds={restaurant.reviews} />
 
       {user && <ReviewForm />}
     </div>

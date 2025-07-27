@@ -1,22 +1,16 @@
 import type { FunctionComponent } from 'react';
-import type { Menu as MenuType } from '../../types';
-import { DishCounter } from '../dish-counter/DishCounter.tsx';
-import { useUser } from '../user-context/use-user.ts';
+import { MenuItem } from './MenuItem.tsx';
 
 type MenuProps = {
-  menu: MenuType[];
+  dishesIds: string[];
 };
 
-export const Menu: FunctionComponent<MenuProps> = ({ menu }) => {
-  const { user } = useUser();
-
+export const Menu: FunctionComponent<MenuProps> = ({ dishesIds }) => {
   return (
     <ul>
-      {menu.map((menuItem) => (
-        <li key={menuItem.id}>
-          {menuItem.name} ({menuItem.ingredients.join(', ')}): {menuItem.price}{' '}
-          &#x20bd;
-          {user && <DishCounter />}
+      {dishesIds.map((dishId) => (
+        <li key={dishId}>
+          <MenuItem dishId={dishId} />
         </li>
       ))}
     </ul>
