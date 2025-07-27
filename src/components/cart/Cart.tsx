@@ -6,6 +6,10 @@ import { CartItem } from './CartItem.tsx';
 export const Cart = () => {
   const cartItems = useSelector(selectCartItemsIds);
 
+  if (!cartItems.length) {
+    return null;
+  }
+
   return (
     <div className={styles.cart}>
       {cartItems.map((cartItemId) => (

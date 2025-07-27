@@ -1,16 +1,16 @@
+import { Provider } from 'react-redux';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import { DishPage } from '../../pages/dish-page/DishPage.tsx';
+import { HomePage } from '../../pages/home-page/HomePage.tsx';
+import { RestaurantPage } from '../../pages/restaurant-page/RestaurantPage.tsx';
+import { store } from '../../redux/store.ts';
+import { RestaurantReviews } from '../../restaurant-reviews/RestaurantReviews.tsx';
 import { Layout } from '../layout/Layout.tsx';
 import 'normalize.css/normalize.css';
+import { RestaurantMenu } from '../restaurant-menu/RestaurantMenu.tsx';
+import { RestaurantsPage } from '../restaurants-page/RestaurantsPage.tsx';
 import { ThemeContextProvider } from '../theme-context/theme-context-provider.tsx';
 import { UserContextProvider } from '../user-context/user-context-provider.tsx';
-import { Provider } from 'react-redux';
-import { store } from '../../redux/store.ts';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
-import { HomePage } from '../home-page/HomePage.tsx';
-import { RestaurantsPage } from '../restaurants-page/RestaurantsPage.tsx';
-import { RestaurantMenu } from '../restaurant-menu/RestaurantMenu.tsx';
-import { RestaurantReviews } from '../../restaurant-reviews/RestaurantReviews.tsx';
-import { RestaurantPage } from '../../pages/restaurant-page/RestaurantPage.tsx';
-import { DishPage } from '../../pages/dish-page/DishPage.tsx';
 
 export const App = () => {
   return (
