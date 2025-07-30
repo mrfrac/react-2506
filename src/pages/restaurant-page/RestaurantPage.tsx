@@ -1,6 +1,5 @@
-import { NavLink, Outlet, useParams } from 'react-router';
-import classNames from 'classnames';
-import styles from './restaurant-page.module.css';
+import { Outlet, useParams } from 'react-router';
+import { Link } from '../../components/link/Link.tsx';
 import { RestaurantCard } from '../../components/restaurant-card/RestaurantCard.tsx';
 
 export const RestaurantPage = () => {
@@ -15,22 +14,10 @@ export const RestaurantPage = () => {
       <RestaurantCard restaurantId={restaurantId} />
       <ul>
         <li>
-          <NavLink to="menu" className={styles.navLink}>
-            {({ isActive }) => (
-              <span className={classNames({ [styles.active]: isActive })}>
-                Меню
-              </span>
-            )}
-          </NavLink>
+          <Link to="menu" label="Меню" />
         </li>
         <li>
-          <NavLink to="reviews" className={styles.navLink}>
-            {({ isActive }) => (
-              <span className={classNames({ [styles.active]: isActive })}>
-                Отзывы
-              </span>
-            )}
-          </NavLink>
+          <Link to="reviews" label="Отзывы" />
         </li>
       </ul>
       <Outlet />
