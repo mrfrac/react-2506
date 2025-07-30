@@ -5,6 +5,7 @@ import {
   selectAmountById,
 } from '../../redux/entities/cart/slice.ts';
 import { useCallback } from 'react';
+import type { RootState } from '../../redux/store.ts';
 
 type UseDishParams = {
   min: number;
@@ -14,7 +15,9 @@ type UseDishParams = {
 
 export const useDishCounter = (params: UseDishParams) => {
   const dispatch = useDispatch();
-  const amount = useSelector((state) => selectAmountById(state, params.dishId));
+  const amount = useSelector((state: RootState) =>
+    selectAmountById(state, params.dishId)
+  );
 
   const increment = useCallback(
     () => dispatch(addToCart(params.dishId)),

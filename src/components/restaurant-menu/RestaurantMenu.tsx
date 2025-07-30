@@ -1,19 +1,19 @@
-import type { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import { selectRestaurantById } from '../../redux/entities/restaurants/slice.ts';
 import type { RootState } from '../../redux/store.ts';
-import { Link } from 'react-router';
+import { Menu } from '../menu/Menu.tsx';
 
-type RestaurantButtonProps = {
-  restaurantId: string;
-};
+export const RestaurantMenu = () => {
+  const { restaurantId } = useParams();
 
-export const RestaurantButton: FC<RestaurantButtonProps> = ({
-  restaurantId,
-}) => {
+  if (!restaurantId) {
+    return null;
+  }
+
   const restaurant = useSelector((state: RootState) =>
     selectRestaurantById(state, restaurantId)
   );
 
-  return <Link to={restaurantId}>{restaurant.name}</Link>;
+  return <Menu dishesIds={restaurant.menu} showCounters={false} />;
 };

@@ -6,8 +6,8 @@ import { CartItem } from './CartItem.tsx';
 export const Cart = () => {
   const cartItems = useSelector(selectCartItemsIds);
 
-  if (cartItems.length === 0) {
-    return <span>Пусто</span>;
+  if (!cartItems.length) {
+    return null;
   }
 
   return (

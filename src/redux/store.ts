@@ -14,3 +14,5 @@ export const store = configureStore({
     [cartSlice.name]: cartSlice.reducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
