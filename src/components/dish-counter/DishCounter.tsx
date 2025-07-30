@@ -1,6 +1,6 @@
-import { Counter } from '../counter/Counter.tsx';
 import type { FC } from 'react';
-import { useDishCounter } from './use-dish-counter.ts';
+import { Counter } from '../counter/Counter.jsx';
+import { useDishCounter } from './use-dish-counter';
 
 type DishCounterProps = {
   dishId: string;
